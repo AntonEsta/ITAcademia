@@ -1,5 +1,5 @@
+# Ignore all
 *
-
+# exclude
 !/src
-
-# /out/production/ITAcademia-JavaCore-Homework-1/ru/academyit/javacore/lesson1/homework/task3/ConvertMetersToKilometers.class
+!/src/**
