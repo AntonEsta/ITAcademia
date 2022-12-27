@@ -1,0 +1,36 @@
+АКАДЕМИЯ АЙТИ
+
+Урок №1. Тема "Программирование в среде Java".
+
+Домашняя работа
+
+Задание №1.
+    - Вывести на экран текст "Silence is golden". Каждое слово должно быть на новой строке.
+
+Решение:
+    Простое решение - Класс ru.academyit.javacore.lesson1.homework.task1.PrintGoldenIsSilence
+
+Задание №2.
+    Даны три числа:
+        - Увеличьте первое число в два раза
+        - Второе число на 3
+        - Третье число возведите в квадрат
+        - Найдите сумму новых трех чисел
+
+Решение:
+    Простое решение - Класс ru.academyit.javacore.lesson1.homework.task2.ThreeNumberCalculation
+    Расширенное решение (с проверкой исключений чтобы мне спать спокойно) - Класс ru.academyit.javacore.lesson1.homework.task2.advanced.ThreeNumberCalculationWithExceptionCheck
+
+Задание №3.
+    Дано расстояние в метрах. Найти число полных километров в нем.
+
+    Решение - Класс ru.academyit.javacore.lesson1.homework.task3.ConvertMetersToKilometers
+
+Задание №4*.
+    - Спросить у пользователя год рождения
+    - Вывести информацию о его возрасте в текущем году (использовать метод java для получение текущего года)
+    - Вывести сколько ему осталось работать до пенсии. Считаем, что пенсионный возраст: 65 лет.
+
+    Решение:
+    Простое решение - Класс ru.academyit.javacore.lesson1.homework.task4.YearsBeforeRetirement
+    Расширенное решение - Класс ru.academyit.javacore.lesson1.homework.task4.advanced.YearsBeforeRetirement
