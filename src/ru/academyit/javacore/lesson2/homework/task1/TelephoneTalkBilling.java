@@ -36,19 +36,26 @@ public class TelephoneTalkBilling {
         Product product = new Product("Междугородний звонок", 1.99);
         receipt.addPosition(new Position(product, 130));
 
+        PercentageOfTheCostOfTheProductDiscount disc = new PercentageOfTheCostOfTheProductDiscount(20);
+        Discounts.getInstance().addProductDiscount(product, disc);
+        Product productDisc = Discounts.getInstance().getProductWithDiscounts(product);
 
-        System.out.printf("Общая стоимость составила: %d", ReceiptHandler.totalCost(receipt));
+        System.out.printf("Общая стоимость без учета скидок составила: %.2f р.", ReceiptHandler.totalCost(receipt));
+        System.out.printf("Общая стоимость составила: %.2f р. (с учетом скидок)", productDisc.getCost());
+
+//        System.out.printf("Общая скидка составила: %.2f р.", ReceiptHandler.totalCost(receipt));
 
 
-        int totalDiscount; // общая скидка
 
-        double cost = costOfSecond * seconds;
+//        int totalDiscount; // общая скидка
 
-        if ( DayOfWeek.of(LocalDate.now().getDayOfWeek().getValue()) == DayOfWeek.WEDNESDAY || DayOfWeek.of(LocalDate.now().getDayOfWeek().getValue()) == DayOfWeek.SUNDAY) {
-            cost = Discounts.percentOf(cost, 20);
-        }
+//        double cost = costOfSecond * seconds;
+//
+//        if ( DayOfWeek.of(LocalDate.now().getDayOfWeek().getValue()) == DayOfWeek.WEDNESDAY || DayOfWeek.of(LocalDate.now().getDayOfWeek().getValue()) == DayOfWeek.SUNDAY) {
+//            cost = Discounts.percentOf(cost, 20);
+//        }
 
-        System.out.printf("Стоимость без учёта скидки составила: ", );
+//        System.out.printf("Стоимость без учёта скидки составила: ", );
 
     }
 
