@@ -3,11 +3,8 @@ package ru.academyit.javacore.lesson2.homework.task1;
 import ru.academyit.javacore.lesson2.homework.task1.cash.Position;
 import ru.academyit.javacore.lesson2.homework.task1.cash.Receipt;
 import ru.academyit.javacore.lesson2.homework.task1.cash.ReceiptHandler;
+import ru.academyit.javacore.lesson2.homework.task1.discounts.*;
 import ru.academyit.javacore.lesson2.homework.task1.product.Product;
-
-import javax.swing.*;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 
 /**
  * <p>Курс
@@ -26,22 +23,24 @@ import java.time.LocalDate;
 public class TelephoneTalkBilling {
     public static void main(String[] args) {
 
+        double costOfSecond = 2.99; // стоимость секунды разговора
 
-
-        double costOfSecond = 2.99;
-
-        int seconds = 120;
+        int seconds = 120; // количество проговоренных секунд
 
         Receipt receipt = new Receipt();
-        Product product = new Product("Междугородний звонок", 1.99);
-        receipt.addPosition(new Position(product, 130));
+        Product product = new Product("Междугородний звонок (по-секундная тарификация)", costOfSecond); // создаем продукт
+        receipt.addPosition(new Position(product, seconds)); // добавляем продукт в счет
 
-        PercentageOfTheCostOfTheProductDiscount disc = new PercentageOfTheCostOfTheProductDiscount(20);
-        Discounts.getInstance().addProductDiscount(product, disc);
-        Product productDisc = Discounts.getInstance().getProductWithDiscounts(product);
+        // создаем скидку "Выходного дня" (действует в выходные дни)
+        WeekendDiscount disc = new WeekendDiscount(new PercentageOfTheCostOfTheProductDiscount(20, "Скидка 20%"), "Скидка выходного дня.");
+        Discounts.getInstance().addProductDiscount(product, disc); // добавляем продукт и скидку в обработчик скидок
+        Product productDisc = Discounts.getInstance().getProductWithDiscounts(product); // получаем продукт с учетом скидки
 
-        System.out.printf("Общая стоимость без учета скидок составила: %.2f р.", ReceiptHandler.totalCost(receipt));
-        System.out.printf("Общая стоимость составила: %.2f р. (с учетом скидок)", productDisc.getCost());
+
+
+        System.out.printf("Общая стоимость без учета скидок составила: %.2f р.\n", ReceiptHandler.totalCost(receipt));
+        receipt.replacePosition(product, productDisc);
+        System.out.printf("Общая стоимость составила: %.2f р. (с учетом скидок)\n", ReceiptHandler.totalCost(receipt));
 
 //        System.out.printf("Общая скидка составила: %.2f р.", ReceiptHandler.totalCost(receipt));
 
