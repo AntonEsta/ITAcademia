@@ -1,8 +1,11 @@
 package ru.academyit.javacore.lesson2.homework.task1.product;
 
-public class Product implements Cloneable{
+/**
+ * Класс данных о товаре.
+ */
+public class Product implements Cloneable {
 
-    private String name;
+    private final String name;
     private double cost;
 
     public double getCost() {
@@ -25,8 +28,7 @@ public class Product implements Cloneable{
     @Override
     public Product clone() {
         try {
-            Product clone = (Product) super.clone();
-            return clone;
+            return (Product) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }

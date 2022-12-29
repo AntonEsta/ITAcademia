@@ -2,38 +2,43 @@ package ru.academyit.javacore.lesson2.homework.task1.cash;
 
 import ru.academyit.javacore.lesson2.homework.task1.product.Product;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+/**
+ * Класс чека. Включает в себя товарные позиции.
+ */
 public class Receipt {
 
-    private final List<Position> positionList = new ArrayList<>();
+    private final Set<Position> positions = new HashSet<>();
 
     public List<Position> getPositions() {
-        return positionList;
+        return positions.stream().toList();
     }
 
-    public Position getPositionByProduct(Product product) {
-        return this.positionList.stream()
-                .filter(p -> p.getProduct().equals(product))
-                .findFirst().get();
+    public void addPosition(Product product, double quantity) {
+        addPosition(new Position(product, quantity));
     }
 
+    /**
+     * Добавляет позицию в чек.
+     *
+     * @param position позиция.
+     */
     public void addPosition(Position position) {
-        this.positionList.add(position);
+        this.positions.add(position);
     }
 
-    public double totalCost() {
-        return this.positionList.stream().mapToDouble((e) -> e.getProduct().getCost()).sum();
-    }
-
+    /**
+     * Заменяет товар в чеке.
+     *
+     * @param product     товар для замены
+     * @param productDisc товар на который нужно заменить
+     */
     public void replacePosition(Product product, Product productDisc) {
-        if (this.positionList.contains(product)) {
-            this.positionList.get(positionList.indexOf(product)).setProduct(productDisc);
-        }
-
-        //        if (this.positionList.stream().anyMatch(p -> p.getProduct().equals(product))) {
-//            this.positionList.get(positionList.indexOf(product)).setProduct(productDisc);
-//        }
+        this.positions.stream()
+                .filter(p -> p.getProduct().equals(product))
+                .forEach(p -> p.setProduct(productDisc));
     }
 }

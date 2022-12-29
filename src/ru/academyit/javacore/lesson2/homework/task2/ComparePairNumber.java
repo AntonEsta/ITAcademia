@@ -1,13 +1,5 @@
 package ru.academyit.javacore.lesson2.homework.task2;
 
-import ru.academyit.javacore.lesson2.homework.task1.cash.Position;
-import ru.academyit.javacore.lesson2.homework.task1.cash.Receipt;
-import ru.academyit.javacore.lesson2.homework.task1.cash.ReceiptHandler;
-import ru.academyit.javacore.lesson2.homework.task1.discounts.Discounts;
-import ru.academyit.javacore.lesson2.homework.task1.discounts.PercentageOfTheCostOfTheProductDiscount;
-import ru.academyit.javacore.lesson2.homework.task1.discounts.WeekendDiscount;
-import ru.academyit.javacore.lesson2.homework.task1.product.Product;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -21,14 +13,13 @@ import java.util.Scanner;
  *
  * <p><b>Домашняя работа.</b><br>
  * <em>Задание №2.</em> - Объявить две целочисленные переменные "a" и "b"
- *     - Задать им произвольные начальные значения
- *     - Написать скрипт, который работает по следующему принципу:
- *             если "a" и "b" положительные, то вывести их разность;
- *             если "a" и "b" отрицательные, то вывести их произведение;
- *             если "a" и "b" разных знаков, то вывести их сумму..</p>
+ * - Задать им произвольные начальные значения
+ * - Написать скрипт, который работает по следующему принципу:
+ * если "a" и "b" положительные, то вывести их разность;
+ * если "a" и "b" отрицательные, то вывести их произведение;
+ * если "a" и "b" разных знаков, то вывести их сумму..</p>
  *
  * @author Эста А.В.
- *
  */
 public class ComparePairNumber {
     public static void main(String[] args) {
@@ -46,11 +37,11 @@ public class ComparePairNumber {
         }
 
         if (a > 0 && b > 0) {
-            System.out.println("a-b=" + (a-b));
-        } else if (a<0 && b<0) {
-            System.out.println("a*b=" + a*b);
+            System.out.println("a-b=" + (a - b));
+        } else if (a < 0 && b < 0) {
+            System.out.println("a*b=" + a * b);
         } else {
-            System.out.println("a+b=" + (a+b));
+            System.out.println("a+b=" + (a + b));
         }
 
     }
