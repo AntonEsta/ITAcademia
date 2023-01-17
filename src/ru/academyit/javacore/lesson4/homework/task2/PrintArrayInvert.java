@@ -19,9 +19,7 @@ import java.util.Arrays;
 public class PrintArrayInvert {
 
     public static void main(String[] args) {
-
         final String[] colorsRainbows = {"красный", "оранжевый", "жёлтый", "зелёный", "голубой", "синий", "фиолетовый"};
-
         System.out.println("Исходный массив:\t\t\t" + Arrays.toString(colorsRainbows));
         System.out.print("Вывод в обратном порядке:\t[");
         for (int i = colorsRainbows.length-1; i >= 0; i--) {
@@ -32,7 +30,6 @@ public class PrintArrayInvert {
                 System.out.println("]");
             }
         }
-
     }
 
 }

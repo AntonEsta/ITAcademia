@@ -1,10 +1,9 @@
 package ru.academyit.javacore.lesson4.homework.task6;
 
-import ru.academyit.javacore.lesson4.homework.task4.PythagoreanTable;
-
-import java.sql.Array;
 import java.util.Arrays;
 import java.util.Objects;
+
+import static ru.academyit.javacore.lesson4.homework.task4.PythagoreanTable.createPythagoreanTable;
 
 /**
  * <p>Курс
@@ -22,84 +21,77 @@ import java.util.Objects;
 public class ArrayColsSumma {
 
     public static void main(String[] args) {
-
         final int ARRAY_SIZE = 5;
-
-        int[][] table = PythagoreanTable.createPythagoreanTable(ARRAY_SIZE); // генерировать массив
-
-        int[][] newTable = Arrays.copyOf(table, table.length+1); // новый массив с +1 строка
-
-        // подсчет и подстановка сумм строк в массив
-        for (int i = 0; i < newTable.length; i++) {
-            int[] t = new int[newTable.length];
-            for (int j = 0; j < newTable[0].length; j++) {
-                t[j] = newTable[j][i];
-            }
-            if (Objects.isNull(newTable[newTable.length-1])) {
-                newTable[newTable.length-1] = new int[newTable.length];
-            }
-            newTable[newTable.length-1][i] = sum(t);
-        }
-
+        int[][] sourceTable = createPythagoreanTable(ARRAY_SIZE);
+        int[][] table = addRowArray(sourceTable, sumArrayByColumns(sourceTable)); // генерировать массив
         // Вывести результат в виде матрицы
-        for (int[] i : newTable) {
+        for (int[] i : table) {
             for (int j : i) {
                 System.out.print(j + "\t\t");
             }
             System.out.println();
         }
-
     }
 
     /**
-     * Копирует оригинальный двумерный массив в новый массив указанного размера.
+     * Дополняет матрицу строкой.
      *
-     * @param original   исходный массив.
-     * @param newLength1 новая длина массива
-     * @param newLength2 новая длина под массивов массива
-     * @return новый массив
+     * @param a исходный двумерный массив.
+     * @return массив нового размера.
      */
-    static int[][] copyArray(int[][] original, int newLength1, int newLength2) {
-        int[][] newTable = new int[newLength1][newLength2]; // новый массив с +1 столбец
-        for (int i = 0; i < newTable.length; i++) {
-            System.arraycopy(original[i], 0, newTable[i], 0, newTable.length);
-        }
-        return newTable;
-    }
-
-    /**
-     * Рассчитывает и возвращает таблицу Пифагора в виде матрицы.
-     *
-     * @param size размер матрицы.
-     * @return таблица Пифагора.
-     */
-    static int[][] createPythagoreanTable(int size) {
-        if (size < 0) {
+    static int[][] addRowArray(int[][] a, int[] b) {
+        if (Objects.isNull(a) || a[0].length == 0) {
             return new int[0][0];
         }
-        int[][] resArray = new int[size][size];
-        for (int i = 1; i < size; i++) {
-            for (int j = i; j < size; j++) {
-                int p = i * j;
-                resArray[i][j] = p;
-                resArray[j][i] = p;
-            }
+        if (a[0].length != b.length) {
+            throw new IndexOutOfBoundsException("Размеры массивов не совпадают. Копирование не возможно.");
         }
-        return resArray;
+        int[][] t = Arrays.copyOf(a, a.length + 1);       // создать новый массив с +1 строкой
+        t[t.length - 1] = new int[t[0].length];                     // инициализация последней строки матрицы
+        System.arraycopy(b, 0, t[t.length - 1], 0, t[0].length);
+        return t;
     }
 
     /**
      * Находит сумму целых чисел массива.
      *
-     * @param array входной массив.
+     * @param a входной массив.
      * @return сумма всех элементов массива.
      */
-    static int sum(int[] array) {
+    static int sum(int[] a) {
+        if (Objects.isNull(a)) {
+            return 0;
+        }
         int i = 0;
-        for (int j : array) {
+        for (int j : a) {
             i += j;
         }
         return i;
+    }
+
+    /**
+     * Рассчитывает суммы по столбцам и возвращает их массивом.
+     *
+     * @param a исходная матрица.
+     * @return массив сумм по столбцам матрицы.
+     */
+    static int[] sumArrayByColumns(int[][] a) {
+        if (Objects.isNull(a) || a.length == 0) {
+            return new int[0];
+        }
+        int[] s = new int[a[0].length];
+        for (int j = 0; j < a[0].length; j++) {
+            int[] c = new int[a.length];
+            for (int i = 0; i < a.length; i++) {
+                if (Objects.nonNull(a[i])) {
+                    c[i] = a[i][j];
+                } else {
+                    c[i] = 0;
+                }
+            }
+            s[j] = sum(c);
+        }
+        return s;
     }
 
 }

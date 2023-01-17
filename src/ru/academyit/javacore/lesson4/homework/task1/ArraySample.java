@@ -36,33 +36,30 @@ public class ArraySample {
 
     /**
      * Создаёт и возвращает массив случайных целых чисел.
-     * @param size размерность массива.
-     * @param min минимальное значение генерируемого числа.
-     * @param max максимальное значение генерируемого числа.
-     * @return массив случайных целых чисел.
      *
+     * @param size размерность массива.
+     * @param min  минимальное значение генерируемого числа.
+     * @param max  максимальное значение генерируемого числа.
+     * @return массив случайных целых чисел.
+     * <p>
      * Если размер массива {@code size} указан нулевой или отрицательный, то возвращается пустой массив.
      * Границы генератора чисел можно указывать в любом порядке.
      */
     static int[] getRandomIntArray(int size, double min, double max) {
-
         if (size <= 0) {
             return new int[0];
         }
-
         int[] resArray = new int[size];
-
         for (int i = 0; i < size; i++) {
             resArray[i] = (int) simpleNumberGenerator(min, max);
         }
-
         return resArray;
-
     }
 
 
     /**
      * Простой генератор случайных чисел.
+     *
      * @param min минимальное значение генерируемого числа.
      * @param max максимальное значение генерируемого числа.
      * @return сгенерированное случайное число.
@@ -71,15 +68,14 @@ public class ArraySample {
         if (!Double.isFinite(min) || !Double.isFinite(max)) {
             return 0;
         }
-
         var minOfRange = Math.min(min, max);
         var maxOfRange = Math.max(min, max);
-
         return Math.random() * (maxOfRange - minOfRange) + minOfRange;
     }
 
     /**
      * Рассчитывает среднее арифметическое значение ряда чисел.
+     *
      * @param numbs ряд чисел для расчета.
      * @return среднее арифметическое значение.
      */

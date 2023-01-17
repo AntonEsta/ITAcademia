@@ -19,12 +19,9 @@ import java.util.Arrays;
 public class ArrayInvertSample {
 
     public static void main(String[] args) {
-
         final String[] colorsRainbows = {"красный", "оранжевый", "жёлтый", "зелёный", "голубой", "синий", "фиолетовый"};
-
         System.out.println("Исходный массив:\t\t" + Arrays.toString(colorsRainbows));
         System.out.println("Инвертированный массив:\t" + Arrays.toString(invertArray(colorsRainbows)));
-
     }
 
     /**

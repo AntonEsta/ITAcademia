@@ -22,11 +22,8 @@ package ru.academyit.javacore.lesson4.homework.task4;
 public class PythagoreanTable {
 
     public static void main(String[] args) {
-
         final int TABLE_SIZE = 5;
-
         int[][] table = createPythagoreanTable(TABLE_SIZE);
-
         // Вывести результат в виде матрицы
         for (int[] i : table) {
             for (int j : i) {
@@ -34,11 +31,11 @@ public class PythagoreanTable {
             }
             System.out.println();
         }
-
     }
 
     /**
      * Рассчитывает и возвращает таблицу Пифагора в виде матрицы.
+     *
      * @param size размер матрицы.
      * @return таблица Пифагора.
      */
@@ -49,9 +46,8 @@ public class PythagoreanTable {
         int[][] resArray = new int[size][size];
         for (int i = 1; i < size; i++) {
             for (int j = i; j < size; j++) {
-                int p = i * j;
-                resArray[i][j] = p;
-                resArray[j][i] = p;
+                resArray[i][j] = i * j;
+                resArray[j][i] = resArray[i][j];
             }
         }
         return resArray;
