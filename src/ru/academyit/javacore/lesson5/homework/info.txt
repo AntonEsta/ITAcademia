@@ -1,0 +1,22 @@
+АКАДЕМИЯ АЙТИ
+
+Урок №5. Тема "Наследование, инкапсуляция, полиморфизм"
+
+Домашняя работа
+
+Доработать проект из урока:
+
+Задание №1.
+    - Если дилер имеет стаж работы от 10 лет, то завод представляет скидку в 10%
+
+    Решение - Метод ru.academyit.javacore.lesson5.homework.factory.SalesDepartment.calculateCarCostForDealer()
+
+Задание №2.
+    Перед тем как приступать к созданию авто, необходимо проверить, завод сможет изготовить данное авто или нет.
+
+    Решение - дополнен метод ru.academyit.javacore.lesson5.homework.factory.CarFactory.createCar()
+
+Задание №3.
+    Вывести информацию о количестве каждой созданной машины заводом.
+
+    Решение - метод ru.academyit.javacore.lesson5.homework.factory.CarFactory.showNumberCarsCreatedByModel()
