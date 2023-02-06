@@ -23,8 +23,8 @@ public class Main {
     /**
      * Делит попарно значения первого массива на значения второго массива.
      * Размерность массивов a и b должны быть одного размера.
-     *
-     * Если деление производится на ноль, то значение в массиве будет определено как NaN.
+     * <p>
+     * Если деление производится на ноль, то значение в массиве будет определено как Double.NaN.
      *
      * @param a Массив целых чисел значения которого необходимо поделить.
      * @param b Массив целых чисел на значения которого необходимо поделить.
@@ -44,12 +44,27 @@ public class Main {
 
         for (int i = 0; i < a.length; i++) {
             try {
-                resultArr[i] = a[i] / b[i];
+                resultArr[i] = division(a[i], b[i]);
             } catch (ArithmeticException e) {
                 resultArr[i] = Double.NaN;
             }
         }
         return resultArr;
+    }
+
+    /**
+     * Деление двух целых чисел.
+     *
+     * @param a делимое число.
+     * @param b делитель.
+     * @return Результат деления.
+     * @throws DivisionByZeroArithmeticException исключение выдается при попытке деления на ноль.
+     */
+    public static double division(int a, int b) throws DivisionByZeroArithmeticException {
+        if (b == 0) {
+            throw new DivisionByZeroArithmeticException();
+        }
+        return a / b;
     }
 
 }
