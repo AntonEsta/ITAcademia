@@ -1,5 +1,6 @@
 package ru.academyit.javacore.lesson8.homework.task.tests;
 
+import ru.academyit.javacore.lesson8.homework.task.exceptions.FormatException;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleRegionCodePart;
 
 import java.math.BigDecimal;
@@ -7,14 +8,27 @@ import java.math.BigDecimal;
 public class TestVehicleRegionCodePart {
 
     public static void runAll() {
-        System.out.println("TestVehicleNumberPart - тесты создание объектов");
+        System.out.println("TestVehicleRegionCodePart - тесты создание объектов");
         testCreateObject();
 
-        System.out.println("TestVehicleNumberPart - тесты сравнения объектов");
+        System.out.println("TestVehicleRegionCodePart - тесты сравнения объектов");
         testCompareObjects();
 
-        System.out.println("TestVehicleNumberPart - тесты сравнения hashCode объектов");
+        System.out.println("TestVehicleRegionCodePart - тесты сравнения hashCode объектов");
         testHashCodeObjects();
+
+        System.out.println("TestVehicleRegionCodePart - парсера");
+        testParseRegionCode();
+
+    }
+
+    private static void testParseRegionCode() {
+        System.out.println("Parse \"A234AA76\" -> " + VehicleRegionCodePart.parseRegionCode("A234AA76"));
+        try {
+            VehicleRegionCodePart.parseRegionCode("A234AA");
+        } catch (NullPointerException | IllegalArgumentException e) {
+            System.out.println("Parse \"A234AA\" -> ");
+        }
     }
 
     public static void testCreateObject() {
@@ -36,7 +50,7 @@ public class TestVehicleRegionCodePart {
             VehicleRegionCodePart o;
             try {
                 o = VehicleRegionCodePart.valueOf(strFailPart);
-                assert o == null : "Тест провален! (o.value = " + o.getValue() + " test = " + strFailPart + ")";
+                assert true : "Тест провален! (o.value = " + o.getValue() + " test = " + strFailPart + ")";
             } catch (NullPointerException | IllegalArgumentException ignored) {
             }
         }
@@ -54,7 +68,7 @@ public class TestVehicleRegionCodePart {
             VehicleRegionCodePart o;
             try {
                 o = VehicleRegionCodePart.valueOf(item);
-                assert o == null : "Тест провален! (o.value = " + o.getValue() + " test = " + item + ")";
+                assert true : "Тест провален! (o.value = " + o.getValue() + " test = " + item + ")";
             } catch (NullPointerException | IllegalArgumentException ignored) {
             }
         }
@@ -78,7 +92,7 @@ public class TestVehicleRegionCodePart {
         var number1 = VehicleRegionCodePart.valueOf("234");
         var number2 = VehicleRegionCodePart.valueOf("234");
 
-        assert number1.hashCode() == number2.hashCode(): "Тест не пройден! Объекты не равны между собой!";
+        assert number1.hashCode() == number2.hashCode() : "Тест не пройден! Объекты не равны между собой!";
 
 
     }

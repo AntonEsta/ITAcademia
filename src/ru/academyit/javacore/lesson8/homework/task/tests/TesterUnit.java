@@ -21,6 +21,9 @@ public final class TesterUnit {
         // тест Vehicle Number
         TestVehicleNumber.runAll();
 
+        // repository test
+        TestGIBDDRepositoryImpl.test();
+
         System.out.println("Тесты пройдены!");
     }
 

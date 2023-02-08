@@ -1,5 +1,7 @@
 package ru.academyit.javacore.lesson8.homework.task.vehicle;
 
+import java.util.regex.Pattern;
+
 public class VehicleRegionCodePart implements Comparable<VehicleRegionCodePart>{
 
     private final String value;
@@ -29,10 +31,19 @@ public class VehicleRegionCodePart implements Comparable<VehicleRegionCodePart>{
         if (s == null) {
             throw new IllegalArgumentException();
         }
-        if (s.length() == 3) {
-            return s.matches("^\\d{3}");
+        if (s.length() == 2 || s.length() == 3) {
+            return s.matches("^\\d{2,3}$");
         }
         return false;
+    }
+
+    public static VehicleRegionCodePart parseRegionCode(String s) {
+        var matcher = Pattern.compile("\\d{2,3}$").matcher(s.toUpperCase());
+        var builder = new StringBuilder();
+        while (matcher.find()) {
+            builder.append(matcher.group(matcher.groupCount()));
+        }
+        return valueOf(builder.toString());
     }
 
     @Override

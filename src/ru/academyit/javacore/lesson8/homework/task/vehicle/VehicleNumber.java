@@ -19,8 +19,10 @@ public class VehicleNumber {
         if (!isValid(s)) {
             throw new IllegalArgumentException();
         }
-        VehicleSeriesPart seriesPart = VehicleSeriesPart.parseSeries(s);
-        return new VehicleNumber();
+        var seriesPart = VehicleSeriesPart.parseSeries(s);
+        var numberPart = VehicleNumberPart.parseNumber(s);
+        var regionCodePart = VehicleRegionCodePart.parseRegionCode(s);
+        return new VehicleNumber(seriesPart, numberPart, regionCodePart);
     }
 
     private static boolean isValid(String s) {

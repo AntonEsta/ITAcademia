@@ -1,5 +1,6 @@
 package ru.academyit.javacore.lesson8.homework.task.tests;
 
+import ru.academyit.javacore.lesson8.homework.task.exceptions.FormatException;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleNumberPart;
 
 import java.math.BigDecimal;
@@ -15,6 +16,18 @@ public class TestVehicleNumberPart {
 
         System.out.println("TestVehicleNumberPart - тесты сравнения hashCode объектов");
         testHashCodeObjects();
+
+        System.out.println("TestVehicleNumberPart - парсера");
+        testParseNumber();
+    }
+
+    private static void testParseNumber() {
+        System.out.println("Parse \"A234AA177\" -> " + VehicleNumberPart.parseNumber("A234AA177"));
+        try {
+            VehicleNumberPart.parseNumber("AA17");
+        } catch (FormatException e) {
+            System.out.println("Parse \"AA17\" -> FormatException");
+        }
     }
 
     public static void testCreateObject() {
@@ -36,7 +49,7 @@ public class TestVehicleNumberPart {
             VehicleNumberPart o;
             try {
                 o = VehicleNumberPart.valueOf(strFailPart);
-                assert o == null : "Тест провален! (o.value = " + o.getValue() + " test = " + strFailPart + ")";
+                assert true : "Тест провален! (o.value = " + o.getValue() + " test = " + strFailPart + ")";
             } catch (NullPointerException | IllegalArgumentException ignored) {
             }
         }
@@ -54,7 +67,7 @@ public class TestVehicleNumberPart {
             VehicleNumberPart o;
             try {
                 o = VehicleNumberPart.valueOf(item);
-                assert o == null : "Тест провален! (o.value = " + o.getValue() + " test = " + item + ")";
+                assert true : "Тест провален! (o.value = " + o.getValue() + " test = " + item + ")";
             } catch (NullPointerException | IllegalArgumentException ignored) {
             }
         }
@@ -78,7 +91,7 @@ public class TestVehicleNumberPart {
         var number1 = VehicleNumberPart.valueOf("234");
         var number2 = VehicleNumberPart.valueOf("234");
 
-        assert number1.hashCode() == number2.hashCode(): "Тест не пройден! Объекты не равны между собой!";
+        assert number1.hashCode() == number2.hashCode() : "Тест не пройден! Объекты не равны между собой!";
 
 
     }

@@ -20,7 +20,9 @@ public class Main {
 
         GIBDDRepository repository = (GIBDDRepository) programContext.get("repository");
 
-        repository.addVehicleNumber("Т652МХ790");
+        var person = new Person("Иван", "Иванович", "Иванов");
+
+        repository.addVehicleNumber("Т652МХ790", person);
 
     }
 

@@ -1,5 +1,9 @@
 package ru.academyit.javacore.lesson8.homework.task.vehicle;
 
+import ru.academyit.javacore.lesson8.homework.task.exceptions.FormatException;
+
+import java.util.regex.Pattern;
+
 public class VehicleNumberPart implements Comparable<VehicleNumberPart>{
 
     private final String value;
@@ -13,7 +17,7 @@ public class VehicleNumberPart implements Comparable<VehicleNumberPart>{
             throw new IllegalArgumentException("Номер не может быть null!");
         }
         if (!isValid(s)) {
-            throw new IllegalArgumentException("Номер не отвечает требованиям!");
+            throw new FormatException("Номер не отвечает требованиям!");
         }
         return new VehicleNumberPart(s);
     }
@@ -30,9 +34,18 @@ public class VehicleNumberPart implements Comparable<VehicleNumberPart>{
             throw new IllegalArgumentException();
         }
         if (s.length() == 3) {
-            return s.matches("^\\d{3}");
+            return s.matches("^\\d{3}$");
         }
         return false;
+    }
+
+    public static VehicleNumberPart parseNumber(String s) {
+        var matcher = Pattern.compile("\\d{3}").matcher(s.toUpperCase());
+        var builder = new StringBuilder();
+        if (!matcher.find()) {
+            throw new FormatException("Ошибка формата!");
+        }
+        return valueOf(matcher.group(0));
     }
 
     @Override

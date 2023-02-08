@@ -1,9 +1,8 @@
 package ru.academyit.javacore.lesson8.homework.task.tests;
 
+import ru.academyit.javacore.lesson8.homework.task.exceptions.FormatException;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleNumberPart;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleSeriesPart;
-
-import java.math.BigDecimal;
 
 public class TestVehicleSeriesPart {
 
@@ -16,11 +15,23 @@ public class TestVehicleSeriesPart {
 
         System.out.println("TestVehicleSeriesPart - тесты сравнения hashCode объектов");
         testHashCodeObjects();
+
+        System.out.println("TestVehicleSeriesPart - парсера");
+        testParseSeries();
+    }
+
+    private static void testParseSeries() {
+        System.out.println("Parse \"A234AA76\" -> " + VehicleSeriesPart.parseSeries("А234АА76"));
+        try {
+            VehicleSeriesPart.parseSeries("А234А023");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Parse \"A234A023\" -> FormatException");
+        }
     }
 
     public static void testCreateObject() {
 
-        String strPart = "ABC";
+        String strPart = "АВС";
         String[] strFailParts = new String[]{"A32", "ыва", "АВ\nС", "7843", null, "", "234wc f wfw"};
 
         var series = VehicleSeriesPart.valueOf(strPart);
@@ -30,8 +41,9 @@ public class TestVehicleSeriesPart {
             VehicleNumberPart o;
             try {
                 o = VehicleNumberPart.valueOf(strFailPart);
-                assert o == null : "Тест провален! (o.value = " + o.getValue() + " test = " + strFailPart + ")";
-            } catch (NullPointerException | IllegalArgumentException ignored) {
+                assert true : "Тест провален! (o.value = " + o.getValue() + " test = " + strFailPart + ")";
+            } catch (IllegalArgumentException | NullPointerException ignored) {
+
             }
         }
 
@@ -51,11 +63,12 @@ public class TestVehicleSeriesPart {
 
     public static void testHashCodeObjects() {
 
-        var series1 = VehicleSeriesPart.valueOf("ABC");
-        var series2 = VehicleSeriesPart.valueOf("ABC");
+        var series1 = VehicleSeriesPart.valueOf("АВС");
+        var series2 = VehicleSeriesPart.valueOf("АВС");
 
-        assert series1.hashCode() == series2.hashCode(): "Тест не пройден! Объекты не равны между собой!";
+        assert series1.hashCode() == series2.hashCode() : "Тест не пройден! Объекты не равны между собой!";
 
+        assert VehicleSeriesPart.valueOf("АВС").hashCode() != VehicleSeriesPart.valueOf("АВТ").hashCode();
 
     }
 

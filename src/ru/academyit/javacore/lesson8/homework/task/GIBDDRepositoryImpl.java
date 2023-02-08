@@ -1,6 +1,5 @@
 package ru.academyit.javacore.lesson8.homework.task;
 
-import ru.academyit.javacore.lesson8.homework.task.tests.VehicleDTO;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleNumber;
 
 import java.util.HashMap;
@@ -16,13 +15,13 @@ public class GIBDDRepositoryImpl implements GIBDDRepository {
     }
 
     @Override
-    public boolean addVehicleNumber(String s) {
-        return false;
+    public boolean addVehicleNumber(String s, Person p) {
+        return data.putIfAbsent(VehicleNumber.valueOf(s), p) != null;
     }
 
     @Override
-    public VehicleDTO getVehicleNumber(String s) {
-        data.get(new VehicleNumber.valueOf(s));
+    public VehicleDTO getVehicleByNumber(String s) {
+        data.get(VehicleNumber.valueOf(s));
         return null;
     }
 
