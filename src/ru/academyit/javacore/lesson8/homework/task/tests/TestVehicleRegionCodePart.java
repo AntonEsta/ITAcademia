@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 public class TestVehicleRegionCodePart {
 
     public static void runAll() {
+        System.out.println("\n-- TestVehicleRegionCodePart --");
+
         System.out.println("TestVehicleRegionCodePart - тесты создание объектов");
         testCreateObject();
 
@@ -23,11 +25,12 @@ public class TestVehicleRegionCodePart {
     }
 
     private static void testParseRegionCode() {
-        System.out.println("Parse \"A234AA76\" -> " + VehicleRegionCodePart.parseRegionCode("A234AA76"));
+        System.out.println("\tTestVehicleRegionCodePart.testParseRegionCode: ");
+        System.out.println("\t\tParse \"A234AA76\" -> " + VehicleRegionCodePart.parseRegionCode("A234AA76"));
         try {
             VehicleRegionCodePart.parseRegionCode("A234AA");
         } catch (NullPointerException | IllegalArgumentException e) {
-            System.out.println("Parse \"A234AA\" -> ");
+            System.out.println("\t\tParse \"A234AA\" -> " + e.getMessage());
         }
     }
 

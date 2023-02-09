@@ -10,7 +10,7 @@ public class TestGIBDDRepositoryImpl {
 
     public static void test() {
 
-        String s = "A034AA076";
+        String s = "А034АА076";
         var person = new Person("Иван", "Иванович", "Иванов");
         repository.addVehicleNumber(s, person);
         VehicleDTO dto = repository.getVehicleByNumber(s);

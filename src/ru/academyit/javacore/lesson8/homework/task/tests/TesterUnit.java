@@ -24,7 +24,7 @@ public final class TesterUnit {
         // repository test
         TestGIBDDRepositoryImpl.test();
 
-        System.out.println("Тесты пройдены!");
+        System.out.println("--------------------\nТЕСТЫ ПРОЙДЕНЫ\n--------------------\n");
     }
 
 }

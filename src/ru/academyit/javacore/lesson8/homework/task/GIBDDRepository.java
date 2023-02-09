@@ -10,4 +10,5 @@ public interface GIBDDRepository {
 
     VehicleDTO getVehicleByNumber(String s);
 
+    VehicleDTO addVehicleNumber(VehicleNumber number, Person person);
 }

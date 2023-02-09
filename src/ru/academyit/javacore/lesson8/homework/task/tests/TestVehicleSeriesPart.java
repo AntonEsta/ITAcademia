@@ -7,6 +7,9 @@ import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleSeriesPart;
 public class TestVehicleSeriesPart {
 
     public static void runAll() {
+
+        System.out.println("\n-- TestVehicleSeriesPart --");
+
         System.out.println("TestVehicleSeriesPart - тесты создание объектов");
         testCreateObject();
 
@@ -21,21 +24,25 @@ public class TestVehicleSeriesPart {
     }
 
     private static void testParseSeries() {
-        System.out.println("Parse \"A234AA76\" -> " + VehicleSeriesPart.parseSeries("А234АА76"));
+        System.out.println("\tTestVehicleSeriesPart.testParseSeries");
+        System.out.println("\t\tParse \"A234AA76\" -> " + VehicleSeriesPart.parseSeries("А234АА076"));
         try {
             VehicleSeriesPart.parseSeries("А234А023");
         } catch (IllegalArgumentException e) {
-            System.out.println("Parse \"A234A023\" -> FormatException");
+            System.out.println("\t\tParse \"A234A023\" -> " + e.getMessage());
         }
     }
 
     public static void testCreateObject() {
+
+        System.out.println("\tTestVehicleSeriesPart.testCreateObject");
 
         String strPart = "АВС";
         String[] strFailParts = new String[]{"A32", "ыва", "АВ\nС", "7843", null, "", "234wc f wfw"};
 
         var series = VehicleSeriesPart.valueOf(strPart);
         assert series.getValue().equals(strPart) : "Создание объекта из строки не корректно! (" + series.getValue() + " != " + strPart + ")";
+        System.out.println("\t\tСоздан объект (" + strPart + ") " + series.getValue().equals(strPart));
 
         for (String strFailPart : strFailParts) {
             VehicleNumberPart o;
@@ -43,7 +50,6 @@ public class TestVehicleSeriesPart {
                 o = VehicleNumberPart.valueOf(strFailPart);
                 assert true : "Тест провален! (o.value = " + o.getValue() + " test = " + strFailPart + ")";
             } catch (IllegalArgumentException | NullPointerException ignored) {
-
             }
         }
 

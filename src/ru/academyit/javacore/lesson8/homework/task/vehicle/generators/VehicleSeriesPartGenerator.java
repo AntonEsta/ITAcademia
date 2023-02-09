@@ -2,7 +2,7 @@ package ru.academyit.javacore.lesson8.homework.task.vehicle.generators;
 
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleSeriesPart;
 
-public class VehicleSeriesPartGenerator implements Generator<VehicleSeriesPart> {
+public class VehicleSeriesPartGenerator extends Generator<VehicleSeriesPart> {
 
     @Override
     public VehicleSeriesPart generate() {
