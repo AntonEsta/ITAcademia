@@ -1,8 +1,5 @@
 package ru.academyit.javacore.lesson8.homework.task.vehicle;
 
-import ru.academyit.javacore.lesson8.homework.task.exceptions.FormatException;
-
-import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
 public class VehicleSeriesPart implements Comparable<VehicleSeriesPart> {

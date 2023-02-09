@@ -1,6 +1,5 @@
 package ru.academyit.javacore.lesson8.homework.task.tests;
 
-import ru.academyit.javacore.lesson8.homework.task.exceptions.FormatException;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleRegionCodePart;
 
 import java.math.BigDecimal;

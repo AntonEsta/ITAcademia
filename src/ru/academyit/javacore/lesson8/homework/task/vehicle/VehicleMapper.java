@@ -1,6 +1,6 @@
-package ru.academyit.javacore.lesson8.homework.task;
+package ru.academyit.javacore.lesson8.homework.task.vehicle;
 
-import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleNumber;
+import ru.academyit.javacore.lesson8.homework.task.Person;
 
 public class VehicleMapper {
 

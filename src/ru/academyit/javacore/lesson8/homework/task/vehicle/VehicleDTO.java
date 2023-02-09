@@ -1,6 +1,6 @@
-package ru.academyit.javacore.lesson8.homework.task;
+package ru.academyit.javacore.lesson8.homework.task.vehicle;
 
-import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleNumber;
+import ru.academyit.javacore.lesson8.homework.task.Person;
 
 import java.util.Objects;
 
@@ -11,14 +11,6 @@ public class VehicleDTO {
     public VehicleDTO(Person person, VehicleNumber vehicleNumber) {
         this.person = person;
         this.vehicleNumber = vehicleNumber;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public VehicleNumber getVehicleNumber() {
-        return vehicleNumber;
     }
 
     @Override
@@ -38,7 +30,7 @@ public class VehicleDTO {
     public String
     toString() {
         return "Транспортное средство" +
-                "\n\t\tГос. регистрационный номер: " + vehicleNumber +
+                "\n\tГос. регистрационный номер: " + vehicleNumber +
                 "\n\tВладелец: " +
                 "\t" + person.getLastName() +
                 " " + person.getFirstName() +

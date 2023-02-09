@@ -4,7 +4,7 @@ import ru.academyit.javacore.lesson8.homework.task.exceptions.FormatException;
 
 import java.util.regex.Pattern;
 
-public class VehicleNumberPart implements Comparable<VehicleNumberPart>{
+public class VehicleNumberPart implements Comparable<VehicleNumberPart> {
 
     private final String value;
 
@@ -41,7 +41,6 @@ public class VehicleNumberPart implements Comparable<VehicleNumberPart>{
 
     public static VehicleNumberPart parseNumber(String s) {
         var matcher = Pattern.compile("\\d{3}").matcher(s.toUpperCase());
-        var builder = new StringBuilder();
         if (!matcher.find()) {
             throw new FormatException("Ошибка формата!");
         }

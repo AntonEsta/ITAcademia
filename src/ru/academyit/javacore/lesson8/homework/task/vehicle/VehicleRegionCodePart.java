@@ -2,7 +2,7 @@ package ru.academyit.javacore.lesson8.homework.task.vehicle;
 
 import java.util.regex.Pattern;
 
-public class VehicleRegionCodePart implements Comparable<VehicleRegionCodePart>{
+public class VehicleRegionCodePart implements Comparable<VehicleRegionCodePart> {
 
     private final String value;
 

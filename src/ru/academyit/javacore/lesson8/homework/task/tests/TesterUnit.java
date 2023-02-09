@@ -22,7 +22,9 @@ public final class TesterUnit {
         TestVehicleNumber.runAll();
 
         // repository test
-        TestGIBDDRepositoryImpl.test();
+        TestGIBDDRepositoryImpl.runAll();
+
+        TestVehicleNumbers.runAll();
 
         System.out.println("--------------------\nТЕСТЫ ПРОЙДЕНЫ\n--------------------\n");
     }

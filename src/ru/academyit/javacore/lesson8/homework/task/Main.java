@@ -2,6 +2,9 @@ package ru.academyit.javacore.lesson8.homework.task;
 
 import ru.academyit.javacore.lesson8.homework.task.exceptions.FormatException;
 import ru.academyit.javacore.lesson8.homework.task.exceptions.TaskCancelException;
+import ru.academyit.javacore.lesson8.homework.task.repositories.GIBDDRepository;
+import ru.academyit.javacore.lesson8.homework.task.repositories.GIBDDRepositoryImpl;
+import ru.academyit.javacore.lesson8.homework.task.tests.TestGIBDDRepositoryImpl;
 import ru.academyit.javacore.lesson8.homework.task.tests.TesterUnit;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleNumber;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.generators.VehicleNumberGenerator;
@@ -17,20 +20,29 @@ public class Main {
 
     final static Map<String, Object> programContext = new HashMap<>();
     final static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    final static VehicleNumberGenerator generator = new VehicleNumberGenerator();
 
     static {
-        programContext.put("repository", new GIBDDRepositoryImpl()); //TODO Поправить
+        programContext.put("repository", new GIBDDRepositoryImpl());
     }
-
 
     public static void main(String[] args) throws IOException {
 
+        // тестируем методы классов
         if (Arrays.asList(args).contains("--test")) {
             TesterUnit.runTests(); // тестирование классов
         }
 
-        GIBDDRepository repository = (GIBDDRepository) programContext.get("repository");
+        // получаем нужный репозиторий из "конфигурации программы"
+        GIBDDRepository repository = (GIBDDRepositoryImpl) programContext.get("repository");
 
+        // заполняем репозиторий тестовыми данными
+        fillRepositoryByTestData(repository, 100_000);
+
+        // тест на поиск владельца авто по номеру машины
+        TestGIBDDRepositoryImpl.testFindVehicleByNumber(repository);
+
+        // внесение данных в репозиторий
         while (true) {
             System.out.println("\nВнести новое транспортное средство? (Д)а/(Н)ет");
             String answer = reader.readLine();
@@ -53,22 +65,46 @@ public class Main {
                 }
             }
         }
+    }
 
-//        var person = new Person("Иван", "Иванович", "Иванов");
-//
-//        System.out.println(repository.addVehicleNumber("Т652МХ790", person));
-
+    /**
+     * Заполняет репозиторий тестовыми данными.
+     * Номер транспортного средства генерируется автоматически.
+     * ФИО владелеца генерируется по шаблону ("Noname" + IntRandom).
+     *
+     * @param repository  репозиторий для заполнения
+     * @param recordCount количество записей для внесения
+     */
+    private static void fillRepositoryByTestData(GIBDDRepository repository, int recordCount) {
+        System.out.println("Заполнение хранилища тестовыми данными...");
+        for (int i = 1; i < recordCount + 1; i++) {
+            System.out.print("\rВнесено " + i + " записи(ей) из " + recordCount);
+            var dto = repository.addVehicleNumber(
+                    generator.generate(),
+                    new Person("Noname" + (int) (Math.random() * 10), "Noname" + (int) (Math.random() * 10), "Noname" + (int) (Math.random() * 10)));
+            if (dto == null) {
+                i--;
+            }
+        }
+        System.out.println("\nЗавершено!");
+        System.out.println("Сейчас хранилище содержит " + repository.getRecordsCount() + " записи(ей).");
     }
 
 
-
+    /**
+     * Получает номер транспортного средства с консоли.
+     *
+     * @return Объект-Номер транспортного средства.
+     * @throws IOException
+     * @throws TaskCancelException
+     */
     private static VehicleNumber getVehicleNumberFromConsole() throws IOException, TaskCancelException {
         System.out.println("Введите данные транспортного средства.");
         VehicleNumber vehicleNumber = null;
         System.out.print("Сгенерировать номер автотранспортного средства? +/-");
         char answer = reader.readLine().charAt(0);
         if (answer == '+') {
-                vehicleNumber = new VehicleNumberGenerator().generate();
+            vehicleNumber = new VehicleNumberGenerator().generate();
             System.out.println("Получен номер -> " + vehicleNumber);
         } else if (answer == '-') {
             while (vehicleNumber == null) {
@@ -87,6 +123,12 @@ public class Main {
         return vehicleNumber;
     }
 
+    /**
+     * Получает данные владельца с консоли.
+     *
+     * @return
+     * @throws IOException
+     */
     private static Person getPersonFromConsole() throws IOException {
         System.out.println("Введите данные владельца.");
         System.out.print("\tИмя: ");
@@ -97,6 +139,5 @@ public class Main {
         String lstName = reader.readLine();
         return new Person(fstName, sndName, lstName);
     }
-
 
 }
