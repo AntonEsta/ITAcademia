@@ -6,6 +6,7 @@ import ru.academyit.javacore.lesson8.homework.task.repositories.GIBDDRepository;
 import ru.academyit.javacore.lesson8.homework.task.repositories.GIBDDRepositoryImpl;
 import ru.academyit.javacore.lesson8.homework.task.tests.TestGIBDDRepositoryImpl;
 import ru.academyit.javacore.lesson8.homework.task.tests.TesterUnit;
+import ru.academyit.javacore.lesson8.homework.task.util.VehicleNumbers;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleNumber;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.generators.VehicleNumberGenerator;
 
@@ -42,6 +43,9 @@ public class Main {
         // тест на поиск владельца авто по номеру машины
         TestGIBDDRepositoryImpl.testFindVehicleByNumber(repository);
 
+        showBeautifulNumbersFromRepository(repository);
+
+
         // внесение данных в репозиторий
         while (true) {
             System.out.println("\nВнести новое транспортное средство? (Д)а/(Н)ет");
@@ -64,6 +68,14 @@ public class Main {
                     System.out.println("---\n" + vehicle + "\n---");
                 }
             }
+        }
+    }
+
+    private static void showBeautifulNumbersFromRepository(GIBDDRepository repository) {
+        var list = VehicleNumbers.filterBeautifulNumbers(repository.getAllVehicleNumbers());
+        System.out.println("\nКрасивые номера зарегистрированные в базе:");
+        for (VehicleNumber number : list) {
+            System.out.println("\t" + number);
         }
     }
 

@@ -29,7 +29,7 @@ public class VehicleNumber {
         return new VehicleNumber(seriesPart, numberPart, regionCodePart);
     }
 
-    private static boolean isValid(String s) {
+    public static boolean isValid(String s) {
 //        return s.toUpperCase().matches(String.format("^[%s][\\d]{3}[%s]{2}[\\d]{3}$", String.valueOf(VehicleSeriesPart.VALID_USED_CHARACTERS)));
         return s.toUpperCase().matches(
                 "^[" +

@@ -11,6 +11,8 @@ public class TestVehicleNumbers {
     private static void testIsBeautifulNumber() {
         String number = "А777АА790";
         assert VehicleNumbers.isBeautifulNumber(number) : "TestVehicleNumbers.testIsBeautifulNumber работает не корректно!";
+        number = "А734АА790";
+        assert !VehicleNumbers.isBeautifulNumber(number) : "TestVehicleNumbers.testIsBeautifulNumber работает не корректно!";
         System.out.println("Метод VehicleNumbers.isBeautifulNumber() корректен.");
     }
 

@@ -5,9 +5,13 @@ import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleDTO;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleMapper;
 import ru.academyit.javacore.lesson8.homework.task.vehicle.VehicleNumber;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Класс репозитория АС ГИБДД.
+ */
 public class GIBDDRepositoryImpl implements GIBDDRepository {
 
     private final Map<VehicleNumber, Person> data = new ConcurrentHashMap<>();
@@ -21,6 +25,11 @@ public class GIBDDRepositoryImpl implements GIBDDRepository {
     public VehicleDTO getVehicleByNumber(String s) {
         data.get(VehicleNumber.valueOf(s));
         return null;
+    }
+
+    @Override
+    public List<VehicleNumber> getAllVehicleNumbers() {
+        return data.keySet().stream().toList();
     }
 
     @Override
