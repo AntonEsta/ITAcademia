@@ -1,6 +1,6 @@
 АКАДЕМИЯ АЙТИ
 
-Урок №6. Тема "Строки: String, StringBuilder, StringBuffer, StringPull"
+Урок №8. Тема "Строки: String, StringBuilder, StringBuffer, StringPull"
 
 Домашняя работа
 
