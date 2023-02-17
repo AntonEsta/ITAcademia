@@ -37,33 +37,40 @@ public class Main {
         for (boolean exit = false; !exit; ) {
             System.out.print(" > ");
             switch (reader.readLine().toLowerCase().trim()) {
-                case "list", "ls":
+                case "list":
+                case"ls":
                     showAllStudentsList();
                     break;
-                case "sort", "s":
+                case "sort":
+                case "s":
                     System.out.println("По какому полю требуется сортировка?");
                     for (boolean sortExit = false; !sortExit; ) {
                         System.out.print("sort > ");
                         switch (reader.readLine().toLowerCase().trim()) {
-                            case "fio", "f":
+                            case "fio":
+                            case "f":
                                 sortListByPerson();
                                 System.out.println("Сортировка завершена.");
                                 sortExit = true;
                                 break;
-                            case "grade", "g":
+                            case "grade":
+                            case "g":
                                 sortListByGradeDesc();
                                 System.out.println("Сортировка завершена.");
                                 sortExit = true;
                                 break;
-                            case "!grade", "!g":
+                            case "!grade":
+                            case "!g":
                                 sortListByGradeAsc();
                                 System.out.println("Сортировка завершена.");
                                 sortExit = true;
                                 break;
-                            case "help", "h":
+                            case "help":
+                            case "h":
                                 showHelpMessage(helpMessages.SORT);
                                 break;
-                            case "quit", "q":
+                            case "quit":
+                            case "q":
                                 sortExit = true;
                                 break;
                             default:
@@ -71,10 +78,12 @@ public class Main {
                         }
                     }
                     break;
-                case "help", "h":
+                case "help":
+                case "h":
                     showHelpMessage(helpMessages.MAIN);
                     break;
-                case "quit", "q":
+                case "quit":
+                case "q":
                     exit = true;
                     break;
                 default:
@@ -91,35 +100,28 @@ public class Main {
      * @param m раздел справки.
      */
     private static void showHelpMessage(helpMessages m) {
-        String prefix = """
-                \n-----------------------------
-                Справка по командам программы.
-                                
-                Понять что Вы находитесь в основном меню программы можно по приветствию в начале строки ввода команды.
-                В главном меню отсутствует указание подменю программы ( > ),
-                тогда как, например, в подменю сортировки будет отображаться название подменю (sort > ).
-                                
-                """;
+        String prefix = "\n-----------------------------\nСправка по командам программы.\n\n" +
+                "Понять что Вы находитесь в основном меню программы можно по приветствию в начале строки ввода команды.\n" +
+                "В главном меню отсутствует указание подменю программы ( > ),\n" +
+                "тогда как, например, в подменю сортировки будет отображаться название подменю (sort > ).\n\n";
         StringBuilder builder = new StringBuilder();
         builder.append(prefix);
         switch (m) {
             case MAIN:
-                builder.append(""" 
-                        В главном меню доступны следующие команды:
-                        list (ls) - вывод списка студентов;
-                        sort (s) - вход в меню сортировки списка студентов;
-                        help (h) - вывод справки по разделу;
-                        quit (q) -завершение работы с программой."""
+                builder.append("В главном меню доступны следующие команды:\n" +
+                                "list (ls) - вывод списка студентов;\n" +
+                                "sort (s) - вход в меню сортировки списка студентов;\n" +
+                                "help (h) - вывод справки по разделу;\n" +
+                                "quit (q) -завершение работы с программой."
                 );
                 break;
             case SORT:
-                builder.append(""" 
-                        В меню сортировки доступны следующие команды:
-                        fio (f) - сортировка списка студентов по ФИО;
-                        grade (g) - сортировка списка студентов по среднему баллу по убыванию значания;
-                        !grade (!g) - сортировка списка студентов по среднему баллу по возрастанию значения;
-                        help (h) - вывод справки по разделу;
-                        quit (q) -завершение работы с программой."""
+                builder.append("В меню сортировки доступны следующие команды:\n" +
+                                "fio (f) - сортировка списка студентов по ФИО;\n" +
+                                "grade (g) - сортировка списка студентов по среднему баллу по убыванию значания;\n" +
+                                "!grade (!g) - сортировка списка студентов по среднему баллу по возрастанию значения;\n" +
+                                "help (h) - вывод справки по разделу;\n" +
+                                "quit (q) -завершение работы с программой."
                 );
                 break;
             default:

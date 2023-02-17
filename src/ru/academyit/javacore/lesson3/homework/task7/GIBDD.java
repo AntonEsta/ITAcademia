@@ -75,11 +75,7 @@ public class GIBDD {
             }
 
             // вывести итоговый отчет по штрафу
-            System.out.printf("""
-                                                
-                            Дата фиксации штрафа: %s
-                            К оплате: %d
-                            """,
+            System.out.printf( "\nДата фиксации штрафа: %s\nК оплате: %d\n",
                     new SimpleDateFormat(DATE_FORMAT_PATTERN).format(fineDate),
                     fine);
         } else {

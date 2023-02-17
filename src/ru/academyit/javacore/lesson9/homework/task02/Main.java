@@ -37,16 +37,19 @@ public class Main {
         for (boolean exit = false; !exit; ) {
             System.out.print("> ");
             switch (bufferedReader.readLine().trim().toLowerCase()) {
-                case "landing", "l":
+                case "l":
+                case "landing":
                     Plane plane = getPlaneFromConsole();
                     if (!landingPlane(aerodrome, plane)) {
                         executorService.execute(new FlyEmulator(plane, aerodrome));
                     }
                     break;
-                case "exitlast", "el":
+                case "exitlast":
+                case "el":
                     exitLastPlane(aerodrome);
                     break;
-                case "exitall", "ea":
+                case "exitall":
+                case "ea":
                     exitLastAll(aerodrome);
                     break;
                 case "exit":
