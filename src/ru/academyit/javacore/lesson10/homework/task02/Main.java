@@ -27,7 +27,6 @@ public class Main {
     static void doWithStreamAPI() {
         int[] arr = {50, 60, 70, 80, 90, 100, 110, 120};
         Arrays.stream(arr).filter((x) -> x < 90).limit(3).map((x) -> x + 10).forEach(System.out::print);
-
     }
 
 }
