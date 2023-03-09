@@ -1,4 +1,4 @@
-package ru.academyit.javacore.lesson13.homework.task01;
+package ru.academyit.javacore.lesson14.homework.task01;
 
 /**
  * Random value generation class.

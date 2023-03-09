@@ -1,4 +1,4 @@
-package ru.academyit.javacore.lesson13.homework.task01;
+package ru.academyit.javacore.lesson14.homework.task01;
 
 import java.util.Objects;
 
@@ -14,17 +14,20 @@ public class Arrays {
      * @return Sorted integer array.
      */
     public static int[] sort(int[] array) {                             // complexity: (n log n)
-
         if (Objects.isNull(array) || array.length < 2) return array;    // complexity: O(1)
-        int base = array[0];                                            // complexity: O(1)
+        // выбираем базовый элемент
+        int base;                                                       // complexity: O(1)
         if (array.length > 2) {                                         // complexity: O(1)
             Random rnd = new Random(0, array.length - 1);               // complexity: O(1)
             base = array[rnd.nextInt()];                                // complexity: O(1)
+        } else {
+            base = array[0];
         }
+        // создаем пустые массивы для значений меньше, больше и равных базовому элементу
         int[] lt = new int[]{};                                         // complexity: O(1)
         int[] gt = new int[]{};                                         // complexity: O(1)
         int[] eq = new int[]{};                                         // complexity: O(1)
-
+        // распределяем каждый элемент массива относительно базового элемента
         // for cycle anyway complexity: O(n)
         for (int value : array) {
             if (value < base) {                                         // complexity: O(1)
@@ -37,10 +40,10 @@ public class Arrays {
                 eq = append(eq, value);                                 // complexity: O(n)
             }
         }
-
-        // recurs
+        // сортируем массивы со значениями выше и ниже базы
         lt = sort(lt);                                                  // complexity: O(n log n)
         gt = sort(gt);                                                  // complexity: O(n log n)
+        // собираем 3 массива в один
         return join(lt, eq, gt);                                        // complexity: O(n)
     }
 
@@ -72,11 +75,10 @@ public class Arrays {
      */
     public static int[] join(int[]... arrays) {                 // complexity: O(n)
         int size = 0;
-        for (int[] arr : arrays) {                              // complexity: O(f(n)) - ничьтожно мало по отношению к след. операциям
+        for (int[] arr : arrays) {                              // complexity: O(f(n)) - ничтожно мало по отношению к след. операциям
             size += arr.length;                                 // complexity: O(1)
         }
         int[] resArr = new int[size];                           // complexity: O(1)
-
         // фактически мы обходим все значения массивов один раз соответственно сложность: O(n)
         for (int i = arrays.length - 1; i >= 0; i--) {          // complexity: O(g(n))
             for (int j = arrays[i].length - 1; j >= 0; j--) {   // complexity: O(h(n))
@@ -85,40 +87,5 @@ public class Arrays {
         }
         return resArr;                                          // complexity: O(1)
     }
-
-//    /**
-//     * Compare two array whether they are identical in their contained values.
-//     *
-//     * @param arrayOne First array for compare.
-//     * @param arrayTwo Second array for compare.
-//     * @return Returns {@code true} if both arrays is identical and {@code false}
-//     * if is not.
-//     */
-//    public static boolean equals(int[] arrayOne, int[] arrayTwo) {
-//        if (arrayOne.length != arrayTwo.length) return false;
-//        if (arrayOne == arrayTwo) return true;
-//        for (int i = 0; i < arrayOne.length; i++) {
-//            if (arrayOne[i] != arrayTwo[i]) return false;
-//        }
-//        return true;
-//    }
-
-//    /**
-//     * Returns integer array like {@link String}
-//     *
-//     * @param array Integer array for transformation.
-//     * @return Array like {@link String}
-//     */
-//    public static String toString(int[] array) {
-//        String str = "{";
-//        for (int i = 0; i < array.length; i++) {
-//            str = str.concat(String.valueOf(array[i]));
-//            if (i < array.length - 1) {
-//                str += ",";
-//            }
-//        }
-//        str += "}";
-//        return str;
-//    }
 
 }
