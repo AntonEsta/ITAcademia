@@ -1,72 +1,29 @@
 package ru.academyit.javacore.lesson12.homework.task;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import ru.academyit.javacore.lesson12.homework.task.operations.Operation;
 
-public class Calculator extends JFrame {
+public class Calculator {
 
-    MainCalculatorTextField mainTextField = new MainCalculatorTextField(600, 300);
+//    private static final Double result = null;
+    private static Operation operation = null;
 
-    public Calculator() throws HeadlessException {
-
-        // set frame's properties
-        setBounds(0,0,600, 600);
-        setResizable(false);
-
-        // frame's layouts
-        var contentPane = getContentPane();
-        contentPane.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-        var topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,10,10));
-        var buttonPanel = new JPanel(new GridLayout(4,4));
-
-        // add frame's components
-        topPanel.add(mainTextField);
-
-        Collection<JButton> buttons = new ArrayList<>();
-
-        for (int i = 9; i >= 0; i--) {
-            var btn = new JButton(String.valueOf(i));
-            btn.setActionCommand("add " + i);
-            buttons.add(btn);
-        }
-
-        for (JButton button : buttons) {
-            buttonPanel.add(button);
-        }
-
-        contentPane.add(topPanel);
-        contentPane.add(buttonPanel);
-
-        // setup mainTextField
-        mainTextField.setText("123");
-
-        // add frame's listeners
-        addKeyListener(new MainKeyListener(this));
-        setFocusable(true);
-
-//        pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    }
-
-//    private static JTextField getMainTextField() {
-//        var field = new JTextField();
-//        field.setFont(new Font(null, Font.ITALIC, 20));
-//        field.setSize(500, 200);
-//        field.setEditable(false);
-//        field.setHorizontalAlignment(JTextField.LEFT);
-////        field.setBorder(BorderFactory.createEmptyBorder());
-//        return field;
+//    public Double getResult() {
+//        return result;
 //    }
 
-    public static void main(String[] args) {
-        new Calculator().setVisible(true);
+//    public Operation getOperation() {
+//        return operation;
+//    }
+
+    public static void setOperation(Operation operation) {
+        Calculator.operation = operation;
     }
 
-    public void calculate() {
-        mainTextField.setText("result");
+    public static Double calculate() {
+        if (operation == null) {
+            return null;
+        }
+        return operation.execute();
     }
+
 }

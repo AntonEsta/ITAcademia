@@ -1,20 +1,22 @@
 package ru.academyit.javacore.lesson12.homework.task;
 
-import javax.swing.text.BadLocationException;
-import java.awt.*;
+import ru.academyit.javacore.lesson12.homework.task.operations.DivideOperation;
+
+import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class MainKeyListener extends KeyAdapter {
 
-    Calculator frame;
+    JFrame frame;
 
-    public MainKeyListener(Calculator frame) {
+    public MainKeyListener(JFrame frame) {
         this.frame = frame;
     }
 
     private void addTextToFrameMainTextField(KeyEvent keyEvent) {
+
+        TextFieldHandler handler = new TextFieldHandler(frame.getMainTextField());
 
         switch (keyEvent.getKeyCode()) {
             case KeyEvent.VK_0:
@@ -38,21 +40,27 @@ public class MainKeyListener extends KeyAdapter {
             case KeyEvent.VK_9:
             case KeyEvent.VK_NUMPAD9:
             case KeyEvent.VK_PERIOD:
+            case KeyEvent.VK_COMMA:
+            case KeyEvent.VK_EQUALS:
+                handler.addText(keyEvent.getKeyChar());
+                break;
             case KeyEvent.VK_DIVIDE:
+                Calculator.setOperation(new DivideOperation());
+                handler.addText(keyEvent.getKeyChar());
+                break;
             case KeyEvent.VK_MULTIPLY:
             case KeyEvent.VK_PLUS:
             case KeyEvent.VK_MINUS:
-            case KeyEvent.VK_COMMA:
-            case KeyEvent.VK_EQUALS:
-                frame.mainTextField.addText(keyEvent.getKeyChar());
-                break;
             case KeyEvent.VK_BACK_SPACE:
-                frame.mainTextField.delLastChar();
+                handler.delLastChar();
                 break;
             case KeyEvent.VK_ENTER:
-                frame.calculate();
+                Calculator.calculate();
                 break;
         }
+
+
+
     }
 
     @Override
